@@ -13,3 +13,10 @@ RUN echo "--- Verifying Tool Versions ---" && \
     bun --version && \
     aws --version && \
     echo "-------------------------------";
+
+# Reset entrypoint to allow arbitrary commands (required for AWS Amplify/CI)
+ENTRYPOINT []
+CMD ["/bin/bash"]
+LABEL org.opencontainers.image.source="https://github.com/DavitMunjishvili/bun-amplify"
+LABEL org.opencontainers.image.description="Docker image for Bun with AWS CLI, Git, and SSH pre-installed. Optimized for CI/CD deployments to AWS Amplify."
+LABEL org.opencontainers.image.licenses="MIT"
