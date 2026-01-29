@@ -1,13 +1,15 @@
-FROM oven/bun
+FROM oven/bun:1.3.7
 
-RUN apt-get update;
-RUN apt-get install openssh-server curl git awscli -y;
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends openssh-server curl git awscli && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN echo "--- Verifying Tool Versions ---";
-RUN ssh -V;
-RUN curl -V;
-RUN git --version;
-RUN bash --version;
-RUN bun --version;
-RUN aws --version;
-RUN echo "-------------------------------";
+RUN echo "--- Verifying Tool Versions ---" && \
+    ssh -V && \
+    curl -V && \
+    git --version && \
+    bash --version && \
+    bun --version && \
+    aws --version && \
+    echo "-------------------------------";
